@@ -241,8 +241,7 @@ async def chatbotofd(client, message):
 )
 async def chatboton(client, message):
     vickdb = MongoClient(MONGO_URL)
-    vick = vickdb
-    ["VickDb"]["Vick"]
+    vick = vickdb["VickDb"]["Vick"]
     if message.from_user:
         user = message.from_user.id
         chat_id = message.chat.id
