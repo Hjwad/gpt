@@ -245,17 +245,17 @@ async def vickai(client: Client, message: Message):
     vickdb = MongoClient(MONGO_URL)
     vick = vickdb["VickDb"]["Vick"]
     is_vick = vick.find_one({"chat_id": message.chat.id})
-if not is_vick:
-if message.reply_to_message:
-if message.reply_to_message.from_user.id == BOT_ID:
-await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-await asyncio.sleep(1)
-TEXT = message.text
-REPLY = await Chatbot(TEXT)
-try:
-await message.reply_text(REPLY)
-except ChatWriteForbidden:
-pass
+    if not is_vick:
+        if message.reply_to_message:
+            if message.reply_to_message.from_user.id == BOT_ID:
+                await client.send_chat_action(message.chat.id, ChatAction.TYPING)
+                await asyncio.sleep(1)
+                TEXT = message.text
+                REPLY = await Chatbot(TEXT)
+                try:
+                    await message.reply_text(REPLY)
+                except ChatWriteForbidden:
+                    pass
 
 @Mukesh.on_message(filters.text & filters.private & ~filters.bot)
 async def vickprivate(client: Client, message: Message):
