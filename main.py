@@ -269,14 +269,14 @@ except ChatWriteForbidden:
 pass
 
 async def Chatbot(TEXT):
-try:
-url = “http://api.brainshop.ai/get?bid=175107&key=KhNdrEybX13w0GmN&uid=uid&msg={TEXT}”
-response = requests.get(url)
-data = response.json()
-return data[‘cnt’]
-except Exception as e:
-print(f”Chatbot Error: {e}”)
-return “الرجاء إعادة المحاولة لاحقًا!”
+    try:
+        url = f"http://api.brainshop.ai/get?bid=175107&key=KhNdrEybX13w0GmN&uid=uid&msg={TEXT}"
+        response = requests.get(url)
+        data = response.json()
+        return data['cnt']
+    except Exception as e:
+        print(f"Chatbot Error: {e}")
+        return "الرجاء إعادة المحاولة لاحقًا!"
 
-print(“جاري البدء….”)
+print("جاري البدء….")
 Mukesh.run()
