@@ -155,9 +155,10 @@ async def restart(client, m: Message):
     await accha.edit("جاري البدء...")
     await asyncio.sleep(0.5)
     await accha.delete()
-    umm = await m.reply_sticker(sticker=STKR)
-    await asyncio.sleep(1)
-    await umm.delete()
+    if STKR:
+        umm = await m.reply_sticker(sticker=STKR)
+        await asyncio.sleep(1)
+        await umm.delete()
     await m.reply_photo(
         photo=START_IMG,
         caption=START,
