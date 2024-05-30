@@ -242,9 +242,9 @@ async def chatboton(client, message):
 
 @Mukesh.on_message(filters.text & filters.reply & ~filters.private & ~filters.bot)
 async def vickai(client: Client, message: Message):
-vickdb = MongoClient(MONGO_URL)
-vick = vickdb[“VickDb”][“Vick”]
-is_vick = vick.find_one({“chat_id”: message.chat.id})
+    vickdb = MongoClient(MONGO_URL)
+    vick = vickdb["VickDb"]["Vick"]
+    is_vick = vick.find_one({"chat_id": message.chat.id})
 if not is_vick:
 if message.reply_to_message:
 if message.reply_to_message.from_user.id == BOT_ID:
