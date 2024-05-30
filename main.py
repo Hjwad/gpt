@@ -128,7 +128,7 @@ async def must_join_channel(bot: Client, msg: Message):
     else:
         chat_info = await bot.get_chat(UPDATE_CHNL)
         link = chat_info.invite_link
-    try:
+try:
                 await msg.reply_photo(
                     photo=START_IMG,
                     caption=f"حسب قاعدة البيانات الخاصة بي، لم تنضم بعد إلى [قناة التحديث]({link})، إذا كنت تريد استخدامي، انضم إلى [قناة التحديث]({link}) وابدأ من جديد!",
