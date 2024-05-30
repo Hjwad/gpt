@@ -11,6 +11,7 @@ import asyncio
 import time
 from datetime import datetime
 from pyrogram import enums
+
 API_ID = os.environ.get("API_ID", None) 
 API_HASH = os.environ.get("API_HASH", None) 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", None) 
@@ -24,7 +25,6 @@ START_IMG = os.environ.get("START_IMG","")
 
 STKR = os.environ.get("STKR")
 
-
 StartTime = time.time()
 Mukesh = Client(
     "chat-gpt" ,
@@ -32,23 +32,24 @@ Mukesh = Client(
     api_hash = API_HASH ,
     bot_token = BOT_TOKEN
 )
-START =f"""
-**๏ ʜᴇʏ, ɪ ᴀᴍ {BOT_NAME}**
-**➻ᴀɴ ᴀɪ-ʙᴀsᴇᴅ ᴄʜᴀᴛʙᴏᴛ.**
+START = f"""
+**๏ مرحبًا، أنا {BOT_NAME}**
+**➻ روبوت محادثة مبني على الذكاء الاصطناعي.**
 **──────────────────**
-**➻ ᴜsᴀɢᴇ /chatbot [on/off]**
-**๏ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ ᴜsᴇ /help**
+**➻ الاستخدام /chatbot [تشغيل/إيقاف]**
+**๏ للحصول على المساعدة استخدم /help**
 """
 SOURCE_TEXT = f"""
-**๏ ʜᴇʏ, ɪ ᴀᴍ [{BOT_NAME}]
-➻ ᴀɴ ᴀɪ-ʙᴀsᴇᴅ ᴄʜᴀᴛʙᴏᴛ.
+**๏ مرحبًا، أنا [{BOT_NAME}]
+➻ روبوت محادثة مبني على الذكاء الاصطناعي.
 ──────────────────
-ᴄʟɪᴄᴋ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ᴛʜᴇ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ**
+انقر على الزر أدناه للحصول على الكود المصدري**
 """
-SOURCE_BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('sᴏᴜʀᴄᴇ', callback_data='hurr')], [InlineKeyboardButton(" ꜱᴜᴘᴘᴏʀᴛ ", url=f"https://t.me/{SUPPORT_GRP}"), InlineKeyboardButton(text="ʙᴀᴄᴋ ", callback_data="HELP_BACK")]])
+SOURCE_BUTTONS = InlineKeyboardMarkup([[InlineKeyboardButton('المصدر', callback_data='hurr')], [InlineKeyboardButton("الدعم", url=f"https://t.me/{SUPPORT_GRP}"), InlineKeyboardButton(text="عودة", callback_data="HELP_BACK")]])
 SOURCE = 'https://te.legra.ph/file/ebc3fc421b8776e29ad98.mp4'
-x=["❤️","🎉","✨","🪸","🎉","🎈","🎯"]
-g=choice(x)
+x = ["❤️", "🎉", "✨", "🪸", "🎉", "🎈", "🎯"]
+g = choice(x)
+
 async def is_admins(chat_id: int):
     return [
         member.user.id
@@ -59,44 +60,44 @@ async def is_admins(chat_id: int):
 
 MAIN = [
     [
-        InlineKeyboardButton(text="ᴅᴇᴠᴇʟᴏᴘᴇʀ", url=f"https://t.me/{OWNER_USERNAME}"),
-        InlineKeyboardButton(text=" ꜱᴜᴘᴘᴏʀᴛ ", url=f"https://t.me/{SUPPORT_GRP}"),
+        InlineKeyboardButton(text="المطور", url=f"https://t.me/{OWNER_USERNAME}"),
+        InlineKeyboardButton(text="الدعم", url=f"https://t.me/{SUPPORT_GRP}"),
     ],
     [
         InlineKeyboardButton(
-            text="ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ",
+            text="أضفني",
             url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
         ),
     ],
     [
-        InlineKeyboardButton(text="ʜᴇʟᴘ & ᴄᴍᴅs ", callback_data="HELP"),
+        InlineKeyboardButton(text="مساعدة وأوامر", callback_data="HELP"),
     ],
     [
-        InlineKeyboardButton(text="sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ", callback_data='source'),
-        InlineKeyboardButton(text=" ᴜᴘᴅᴀᴛᴇs ", url=f"https://t.me/{UPDATE_CHNL}"),
+        InlineKeyboardButton(text="كود المصدر", callback_data='source'),
+        InlineKeyboardButton(text="التحديثات", url=f"https://t.me/{UPDATE_CHNL}"),
     ],
 ]
 PNG_BTN = [
     [
          InlineKeyboardButton(
-             text="ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ",
+             text="أضفني",
              url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
          ),
      ],
      [
-         InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ", 
+         InlineKeyboardButton(text="الدعم", 
                               url=f"https://t.me/{SUPPORT_GRP}",
          ),
      ],
 ]
 
-HELP_READ = "**ᴜsᴀɢᴇ ☟︎︎︎**\n**➻ ᴜsᴇ** `/chatbot on` **ᴛᴏ ᴇɴᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ.**\n**➻ ᴜsᴇ** `/chatbot off` **ᴛᴏ ᴅɪsᴀʙʟᴇ ᴛʜᴇ ᴄʜᴀᴛʙᴏᴛ.**\n**๏ ɴᴏᴛᴇ ➻ ʙᴏᴛʜ ᴛʜᴇ ᴀʙᴏᴠᴇ ᴄᴏᴍᴍᴀɴᴅs ғᴏʀ ᴄʜᴀᴛ-ʙᴏᴛ ᴏɴ/ᴏғғ ᴡᴏʀᴋ ɪɴ ɢʀᴏᴜᴘ ᴏɴʟʏ!!**\n\n**➻ ᴜsᴇ** `/ping` **ᴛᴏ ᴄʜᴇᴄᴋ ᴛʜᴇ ᴘɪɴɢ ᴏғ ᴛʜᴇ ʙᴏᴛ.**\n||©️ @NOBI7A||"
+HELP_READ = "**الاستخدام ☟︎︎︎**\n**➻ استخدم** `/chatbot on` **لتفعيل الروبوت.**\n**➻ استخدم** `/chatbot off` **لإيقاف الروبوت.**\n**๏ ملاحظة ➻ كلا الأمرين أعلاه لتشغيل/إيقاف الروبوت يعملان في المجموعات فقط!!**\n\n**➻ استخدم** `/ping` **للتحقق من استجابة الروبوت.**\n||©️ @NOBI7A||"
 HELP_BACK = [
-     
     [
-           InlineKeyboardButton(text="ʙᴀᴄᴋ ", callback_data="HELP_BACK"),
+           InlineKeyboardButton(text="عودة", callback_data="HELP_BACK"),
     ]
 ]
+
 @Mukesh.on_message(filters.incoming & filters.private, group=-1)
 async def must_join_channel(bot: Client, msg: Message):
     if not UPDATE_CHNL:
@@ -112,11 +113,11 @@ async def must_join_channel(bot: Client, msg: Message):
                 link = chat_info.invite_link
             try:
                 await msg.reply_photo(
-                    photo=START_IMG, caption=f"» ᴀᴄᴄᴏʀᴅɪɴɢ ᴛᴏ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ ʏᴏᴜ'ᴠᴇ ɴᴏᴛ ᴊᴏɪɴᴇᴅ [ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ]({link}) ʏᴇᴛ, ɪғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴜsᴇ ᴍᴇ ᴛʜᴇɴ ᴊᴏɪɴ [ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ]({link}) ᴀɴᴅ sᴛᴀʀᴛ ᴍᴇ ᴀɢᴀɪɴ !",
+                    photo=START_IMG, caption=f"حسب قاعدة البيانات الخاصة بي، لم تنضم بعد إلى [قناة التحديث]({link})، إذا كنت تريد استخدامي، انضم إلى [قناة التحديث]({link}) وابدأ من جديد!",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ", url=link),
+                                InlineKeyboardButton("قناة التحديث", url=link),
                             ]
                         ]
                     )
@@ -125,15 +126,16 @@ async def must_join_channel(bot: Client, msg: Message):
             except ChatWriteForbidden:
                 pass
     except ChatAdminRequired:
-        print(f"Promote me as an admin in the UPDATE CHANNEL  : {UPDATE_CHNL} !")
-@Mukesh.on_message(filters.command(["start",f"start@{BOT_USERNAME}"]))
+        print(f"قم بترقيتي كمسؤول في قناة التحديث: {UPDATE_CHNL}!")
+
+@Mukesh.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def restart(client, m: Message):
         accha = await m.reply_text(
                         text = f"{g}")
         await asyncio.sleep(1)
-        await accha.edit("ᴘɪɴɢ ᴘᴏɴɢ ꜱᴛᴀʀᴛɪɴɢ..")
+        await accha.edit("بدء...")
         await asyncio.sleep(0.5)
-        await accha.edit("ᴜᴍ ꜱᴛᴀʀᴛɪɴɢ..")
+        await accha.edit("جاري البدء...")
         await asyncio.sleep(0.5)
         await accha.delete()
         umm = await m.reply_sticker(
@@ -146,6 +148,7 @@ async def restart(client, m: Message):
             caption=START,
             reply_markup=InlineKeyboardMarkup(MAIN),
         )
+
 @Mukesh.on_callback_query()
 async def cb_handler(Client, query: CallbackQuery):
     if query.data == "HELP":
@@ -163,30 +166,33 @@ async def cb_handler(Client, query: CallbackQuery):
     elif query.data == 'hurr':
         await query.answer()
         await query.message.reply(SOURCE)
+
 @Mukesh.on_message(filters.command(["help", f"help@{BOT_USERNAME}"], prefixes=["","+", ".", "/", "-", "?", "$"]))
 async def restart(client, message):
     hmm = await message.reply_photo(START_IMG,
                              caption= HELP_READ,
                         reply_markup= InlineKeyboardMarkup(HELP_BACK),
        )
+
 @Mukesh.on_message(filters.command(['source', 'repo']))
 async def source(bot, m):
     await m.reply_photo(START_IMG, caption=SOURCE_TEXT, reply_markup=SOURCE_BUTTONS, reply_to_message_id=m.id)
-#  alive
+
+# التحقق من استجابة الروبوت
 @Mukesh.on_message(filters.command(["ping","alive"], prefixes=["/"]))
 async def ping(client, message: Message):
         start = datetime.now()
-        t = "__ριиgιиg...__"
+        t = "__جاري التحقق...__"
         txxt = await message.reply(t)
         await asyncio.sleep(0.25)
-        await txxt.edit_text("__ριиgιиg.....__")
+        await txxt.edit_text("__جاري التحقق.....__")
         await asyncio.sleep(0.35)
         await txxt.delete()
         end = datetime.now()
         ms = (end-start).microseconds / 1000
         await message.reply_photo(
                              photo=START_IMG,
-                             caption=f"ʜᴇʏ ʙᴀʙʏ!!\n**[{BOT_NAME}](t.me/{BOT_USERNAME})** ɪꜱ ᴀʟɪᴠᴇ 🥀 ᴀɴᴅ ᴡᴏʀᴋɪɴɢ ꜰɪɴᴇ ᴡɪᴛʜ ᴘᴏɴɢ ᴏꜰ \n➥ `{ms}` ms\n\n**ᴍᴀᴅᴇ ᴡɪᴛʜ ❣️ ʙʏ || [NOBITA](https://t.me/NOBI7A)||**",
+                             caption=f"مرحبًا!\n**[{BOT_NAME}](t.me/{BOT_USERNAME})** قيد العمل بشكل جيد مع استجابة \n➥ `{ms}` ms\n\n**تم الإنشاء بواسطة ❣️ || [NOBITA](https://t.me/NOBI7A)||**",
                              reply_markup=InlineKeyboardMarkup(PNG_BTN),
        )
 
@@ -203,263 +209,74 @@ async def chatbotofd(client, message):
            await is_admins(chat_id)
         ):
            return await message.reply_text(
-                "You are not admin"
+                "أنت لست مسؤولاً"
             )
     is_vick = vick.find_one({"chat_id": message.chat.id})
     if not is_vick:
         vick.insert_one({"chat_id": message.chat.id})
-        await message.reply_text(f"Chatbot Disabled!")
+        await message.reply_text(f"تم تعطيل الروبوت!")
     if is_vick:
-        await message.reply_text(f"ChatBot Already Disabled")
-    
+        await message.reply_text(f"الروبوت معطل بالفعل")
 
 @Mukesh.on_message(
     filters.command(["chatbot on", f"chatbot@{BOT_USERNAME} on"] ,prefixes=["/"])
     & ~filters.private)
 async def chatboton(client, message):
     vickdb = MongoClient(MONGO_URL)    
-    vick = vickdb["VickDb"]["Vick"]     
-    if message.from_user:
-        user = message.from_user.id
-        chat_id = message.chat.id
-        if user not in (
-            await is_admins(chat_id)
-        ):
-            return await message.reply_text(
-                "You are not admin"
-            )
-    is_vick = vick.find_one({"chat_id": message.chat.id})
-    if not is_vick:           
-        await message.reply_text(f"Chatbot Already Enabled")
-    if is_vick:
-        vick.delete_one({"chat_id": message.chat.id})
-        await message.reply_text(f"ChatBot Enabled!")
-    
-
-@Mukesh.on_message(
-    filters.command(["chatbot", f"chatbot@{BOT_USERNAME}"], prefixes=["/"])
-    & ~filters.private)
-async def chatbot(client, message):
-    await message.reply_text(f"**ᴜsᴀɢᴇ:**\n/**chatbot [on/off]**\n**ᴄʜᴀᴛ-ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅ(s) ᴡᴏʀᴋ ɪɴ ɢʀᴏᴜᴘ ᴏɴʟʏ!**")
-
-
-@Mukesh.on_message(
- (
-        filters.text
-        | filters.sticker
-    )
-    & ~filters.private
-    & ~filters.bot,
+    vick = vickdb["VickDb”][“Vick”]
+if message.from_user:
+user = message.from_user.id
+chat_id = message.chat.id
+if user not in (
+await is_admins(chat_id)
+):
+return await message.reply_text(
+“أنت لست مسؤولاً”
 )
+is_vick = vick.find_one({“chat_id”: message.chat.id})
+if not is_vick:
+await message.reply_text(f”الروبوت مفعل بالفعل!”)
+if is_vick:
+vick.delete_one({“chat_id”: message.chat.id})
+await message.reply_text(f”تم تفعيل الروبوت!”)
+
+@Mukesh.on_message(filters.text & filters.reply & ~filters.private & ~filters.bot)
 async def vickai(client: Client, message: Message):
+vickdb = MongoClient(MONGO_URL)
+vick = vickdb[“VickDb”][“Vick”]
+is_vick = vick.find_one({“chat_id”: message.chat.id})
+if not is_vick:
+if message.reply_to_message:
+if message.reply_to_message.from_user.id == BOT_ID:
+await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
+await asyncio.sleep(1)
+TEXT = message.text
+REPLY = await Chatbot(TEXT)
+try:
+await message.reply_text(REPLY)
+except ChatWriteForbidden:
+pass
 
-   chatdb = MongoClient(MONGO_URL)
-   chatai = chatdb["Word"]["WordDb"]   
-
-   if not message.reply_to_message:
-       vickdb = MongoClient(MONGO_URL)
-       vick = vickdb["VickDb"]["Vick"] 
-       is_vick = vick.find_one({"chat_id": message.chat.id})
-       if not is_vick:
-           await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-           K = []  
-           is_chat = chatai.find({"word": message.text})  
-           k = chatai.find_one({"word": message.text})      
-           if k:               
-               for x in is_chat:
-                   K.append(x['text'])          
-               hey = random.choice(K)
-               is_text = chatai.find_one({"text": hey})
-               Yo = is_text['check']
-               if Yo == "sticker":
-                   await message.reply_sticker(f"{hey}")
-               if not Yo == "sticker":
-                   await message.reply_text(f"{hey}")
-   
-   if message.reply_to_message:  
-       vickdb = MongoClient(MONGO_URL)
-       vick = vickdb["VickDb"]["Vick"] 
-       is_vick = vick.find_one({"chat_id": message.chat.id})    
-       getme = await Mukesh.get_me()
-       bot_id = getme.id                             
-       if message.reply_to_message.from_user.id == bot_id: 
-           if not is_vick:                   
-               await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-               K = []  
-               is_chat = chatai.find({"word": message.text})
-               k = chatai.find_one({"word": message.text})      
-               if k:       
-                   for x in is_chat:
-                       K.append(x['text'])
-                   hey = random.choice(K)
-                   is_text = chatai.find_one({"text": hey})
-                   Yo = is_text['check']
-                   if Yo == "sticker":
-                       await message.reply_sticker(f"{hey}")
-                   if not Yo == "sticker":
-                       await message.reply_text(f"{hey}")
-       if not message.reply_to_message.from_user.id == bot_id:          
-           if message.sticker:
-               is_chat = chatai.find_one({"word": message.reply_to_message.text, "id": message.sticker.file_unique_id})
-               if not is_chat:
-                   chatai.insert_one({"word": message.reply_to_message.text, "text": message.sticker.file_id, "check": "sticker", "id": message.sticker.file_unique_id})
-           if message.text:                 
-               is_chat = chatai.find_one({"word": message.reply_to_message.text, "text": message.text})                 
-               if not is_chat:
-                   chatai.insert_one({"word": message.reply_to_message.text, "text": message.text, "check": "none"})    
-               
-
-@Mukesh.on_message(
- (
-        filters.sticker
-        | filters.text
-    )
-    & ~filters.private
-    & ~filters.bot,
-)
-async def vickstickerai(client: Client, message: Message):
-
-   chatdb = MongoClient(MONGO_URL)
-   chatai = chatdb["Word"]["WordDb"]   
-
-   if not message.reply_to_message:
-       vickdb = MongoClient(MONGO_URL)
-       vick = vickdb["VickDb"]["Vick"] 
-       is_vick = vick.find_one({"chat_id": message.chat.id})
-       if not is_vick:
-           await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-           K = []  
-           is_chat = chatai.find({"word": message.sticker.file_unique_id})      
-           k = chatai.find_one({"word": message.text})      
-           if k:           
-               for x in is_chat:
-                   K.append(x['text'])
-               hey = random.choice(K)
-               is_text = chatai.find_one({"text": hey})
-               Yo = is_text['check']
-               if Yo == "text":
-                   await message.reply_text(f"{hey}")
-               if not Yo == "text":
-                   await message.reply_sticker(f"{hey}")
-   
-   if message.reply_to_message:
-       vickdb = MongoClient(MONGO_URL)
-       vick = vickdb["VickDb"]["Vick"] 
-       is_vick = vick.find_one({"chat_id": message.chat.id})
-       getme = await Mukesh.get_me()
-       bot_id = getme.id
-       if message.reply_to_message.from_user.id == bot_id: 
-           if not is_vick:                    
-               await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-               K = []  
-               is_chat = chatai.find({"word": message.text})
-               k = chatai.find_one({"word": message.text})      
-               if k:           
-                   for x in is_chat:
-                       K.append(x['text'])
-                   hey = random.choice(K)
-                   is_text = chatai.find_one({"text": hey})
-                   Yo = is_text['check']
-                   if Yo == "text":
-                       await message.reply_text(f"{hey}")
-                   if not Yo == "text":
-                       await message.reply_sticker(f"{hey}")
-       if not message.reply_to_message.from_user.id == bot_id:          
-           if message.text:
-               is_chat = chatai.find_one({"word": message.reply_to_message.sticker.file_unique_id, "text": message.text})
-               if not is_chat:
-                   toggle.insert_one({"word": message.reply_to_message.sticker.file_unique_id, "text": message.text, "check": "text"})
-           if message.sticker:                 
-               is_chat = chatai.find_one({"word": message.reply_to_message.sticker.file_unique_id, "text": message.sticker.file_id})                 
-               if not is_chat:
-                   chatai.insert_one({"word": message.reply_to_message.sticker.file_unique_id, "text": message.sticker.file_id, "check": "none"})    
-               
-
-
-@Mukesh.on_message(
-    (
-        filters.text
-        | filters.sticker
-    )
-    & filters.private
-    & ~filters.bot,
-)
+@Mukesh.on_message(filters.text & filters.private & ~filters.bot)
 async def vickprivate(client: Client, message: Message):
+await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
+await asyncio.sleep(1)
+TEXT = message.text
+REPLY = await Chatbot(TEXT)
+try:
+await message.reply_text(REPLY)
+except ChatWriteForbidden:
+pass
 
-   chatdb = MongoClient(MONGO_URL)
-   chatai = chatdb["Word"]["WordDb"]
-   if not message.reply_to_message: 
-       await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-       K = []  
-       is_chat = chatai.find({"word": message.text})                 
-       for x in is_chat:
-           K.append(x['text'])
-       hey = random.choice(K)
-       is_text = chatai.find_one({"text": hey})
-       Yo = is_text['check']
-       if Yo == "sticker":
-           await message.reply_sticker(f"{hey}")
-       if not Yo == "sticker":
-           await message.reply_text(f"{hey}")
-   if message.reply_to_message:            
-       getme = await Mukesh.get_me()
-       bot_id = getme.id       
-       if message.reply_to_message.from_user.id == bot_id:                    
-           await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-           K = []  
-           is_chat = chatai.find({"word": message.text})                 
-           for x in is_chat:
-               K.append(x['text'])
-           hey = random.choice(K)
-           is_text = chatai.find_one({"text": hey})
-           Yo = is_text['check']
-           if Yo == "sticker":
-               await message.reply_sticker(f"{hey}")
-           if not Yo == "sticker":
-               await message.reply_text(f"{hey}")
-       
+async def Chatbot(TEXT):
+try:
+url = “http://api.brainshop.ai/get?bid=175107&key=KhNdrEybX13w0GmN&uid=uid&msg={TEXT}”
+response = requests.get(url)
+data = response.json()
+return data[‘cnt’]
+except Exception as e:
+print(f”Chatbot Error: {e}”)
+return “الرجاء إعادة المحاولة لاحقًا!”
 
-@Mukesh.on_message(
- (
-        filters.sticker
-        | filters.text
-    )
-    & filters.private
-    & ~filters.bot,
-)
-async def vickprivatesticker(client: Client, message: Message):
-
-   chatdb = MongoClient(MONGO_URL)
-   chatai = chatdb["Word"]["WordDb"] 
-   if not message.reply_to_message:
-       await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-       K = []  
-       is_chat = chatai.find({"word": message.sticker.file_unique_id})                 
-       for x in is_chat:
-           K.append(x['text'])
-       hey = random.choice(K)
-       is_text = chatai.find_one({"text": hey})
-       Yo = is_text['check']
-       if Yo == "text":
-           await message.reply_text(f"{hey}")
-       if not Yo == "text":
-           await message.reply_sticker(f"{hey}")
-   if message.reply_to_message:            
-       getme = await Mukesh.get_me()
-       bot_id = getme.id       
-       if message.reply_to_message.from_user.id == bot_id:                    
-           await Mukesh.send_chat_action(message.chat.id, ChatAction.TYPING)
-           K = []  
-           is_chat = chatai.find({"word": message.sticker.file_unique_id})                 
-           for x in is_chat:
-               K.append(x['text'])
-           hey = random.choice(K)
-           is_text = chatai.find_one({"text": hey})
-           Yo = is_text['check']
-           if Yo == "text":
-               await message.reply_text(f"{hey}")
-           if not Yo == "text":
-               await message.reply_sticker(f"{hey}")
-
-print(f"{BOT_NAME} ɪs ᴀʟɪᴠᴇ!")      
+print(“جاري البدء….”)
 Mukesh.run()
