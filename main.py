@@ -11,6 +11,7 @@ import asyncio
 import time
 from datetime import datetime
 from pyrogram import enums
+from pyrogram.errors import ChatWriteForbidden
 
 API_ID = os.environ.get("API_ID", None)
 API_HASH = os.environ.get("API_HASH", None)
