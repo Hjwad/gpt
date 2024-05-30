@@ -117,35 +117,7 @@ HELP_BACK = [
 ]
 
 @Mukesh.on_message(filters.incoming & filters.private, group=-1)
-async def must_join_channel(bot: Client, msg: Message):
-    if not UPDATE_CHNL:
-        return
-    try:
-        try:
-            await bot.get_chat_member(UPDATE_CHNL, msg.from_user.id)
-        except UserNotParticipant:
-            if UPDATE_CHNL.isalpha():
-                link = "https://t.me/" + UPDATE_CHNL
-        else:
-            chat_info = await bot.get_chat(UPDATE_CHNL)
-            link = chat_info.invite_link
-            try:
-                await msg.reply_photo(
-                    photo=START_IMG,
-                    caption=f"حسب قاعدة البيانات الخاصة بي، لم تنضم بعد إلى [قناة التحديث]({link})، إذا كنت تريد استخدامي، انضم إلى [قناة التحديث]({link}) وابدأ من جديد!",
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton("قناة التحديث", url=link),
-                            ]
-                        ]
-                    )
-                )
-                await msg.stop_propagation()
-            except ChatWriteForbidden:
-                pass
-    except ChatAdminRequired:
-        print(f"قم بترقيتي كمسؤول في قناة التحديث: {UPDATE_CHNL}!")
+
 
 @Mukesh.on_message(filters.command(["start", f"start@{BOT_USERNAME}"]))
 async def restart(client, m: Message):
