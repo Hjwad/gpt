@@ -223,22 +223,22 @@ async def chatbotofd(client, message):
     & ~filters.private)
 async def chatboton(client, message):
     vickdb = MongoClient(MONGO_URL)    
-    vick = vickdb["VickDb”][“Vick”]
-if message.from_user:
-user = message.from_user.id
-chat_id = message.chat.id
-if user not in (
-await is_admins(chat_id)
-):
-return await message.reply_text(
-“أنت لست مسؤولاً”
-)
-is_vick = vick.find_one({“chat_id”: message.chat.id})
-if not is_vick:
-await message.reply_text(f”الروبوت مفعل بالفعل!”)
-if is_vick:
-vick.delete_one({“chat_id”: message.chat.id})
-await message.reply_text(f”تم تفعيل الروبوت!”)
+    vick = vickdb["VickDb"]["Vick"]
+    if message.from_user:
+        user = message.from_user.id
+        chat_id = message.chat.id
+        if user not in (
+            await is_admins(chat_id)
+        ):
+            return await message.reply_text(
+                "أنت لست مسؤولاً"
+            )
+    is_vick = vick.find_one({"chat_id": message.chat.id})
+    if not is_vick:           
+        await message.reply_text("الروبوت مفعل بالفعل!")
+    if is_vick:
+        vick.delete_one({"chat_id": message.chat.id})
+        await message.reply_text("تم تفعيل الروبوت!")
 
 @Mukesh.on_message(filters.text & filters.reply & ~filters.private & ~filters.bot)
 async def vickai(client: Client, message: Message):
